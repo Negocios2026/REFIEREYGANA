@@ -34,10 +34,10 @@
         <div class="w-24 h-24 mx-auto rounded-full p-1 bg-gradient-to-tr from-amber-400 via-amber-200 to-[#2dd4bf] shadow-lg mb-3 bg-black">
           <div class="w-full h-full rounded-full overflow-hidden bg-black flex items-center justify-center">
             <img 
-              src="LOGO CONFORT JIREH_2.jpeg" 
+              src="logo.jpeg" 
               alt="Confort Jireh" 
               class="w-full h-full object-cover"
-              onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/negocios2026/REFIEREYGANA/main/LOGO%20CONFORT%20JIREH_2.jpeg';"
+              onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/negocios2026/REFIEREYGANA/main/logo.jpeg';"
             />
           </div>
         </div>
@@ -178,9 +178,7 @@
     Confort Jireh • Duerme bien, vive mejor
   </footer>
 
-  <!-- ========================================================== -->
   <!-- MODAL 1: CONDICIONES CLARAS DEL PROGRAMA -->
-  <!-- ========================================================== -->
   <div id="modalTerminos" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-[420px] rounded-3xl p-6 text-left shadow-2xl border border-slate-200 max-h-[85vh] overflow-y-auto space-y-3.5">
       
@@ -222,9 +220,7 @@
     </div>
   </div>
 
-  <!-- ========================================================== -->
-  <!-- MODAL 2: PASE DE CONFIRMACIÓN (RESUMEN PARA PANTALLAZO) -->
-  <!-- ========================================================== -->
+  <!-- MODAL 2: PASE DE CONFIRMACIÓN -->
   <div id="modalExito" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-[420px] rounded-3xl p-6 text-center shadow-2xl border-2 border-emerald-500 space-y-4">
       
@@ -241,9 +237,7 @@
         </h2>
       </div>
 
-      <!-- Resumen Oficial para Pantallazo -->
       <div class="bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl p-4 text-left space-y-2.5 text-xs shadow-inner relative">
-        
         <div class="flex items-center justify-between border-b border-slate-200 pb-2">
           <span class="text-[10px] uppercase font-bold text-slate-400">N.° de Pase:</span>
           <span id="resConsecutivo" class="text-xs font-black text-slate-900 bg-slate-200/80 px-2 py-0.5 rounded font-mono tracking-wider"></span>
@@ -270,7 +264,6 @@
         </div>
       </div>
 
-      <!-- Indicación con icono SVG nativo -->
       <div class="bg-amber-50 border border-amber-200 p-2.5 rounded-xl text-[11px] text-amber-950 font-medium leading-tight text-left flex items-start gap-2">
         <svg class="w-4 h-4 text-amber-700 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
@@ -340,7 +333,6 @@
       const tel = document.getElementById('telefonoReferido').value.trim();
       const prod = document.getElementById('productoInteres').value;
 
-      // Fecha actual y cálculo a 90 días (3 meses)
       const hoy = new Date();
       const fechaLimite = new Date();
       fechaLimite.setDate(hoy.getDate() + 90);
@@ -348,7 +340,6 @@
       const opcionesFecha = { day: '2-digit', month: 'short', year: 'numeric' };
       const fechaTexto = fechaLimite.toLocaleDateString('es-CO', opcionesFecha).toUpperCase();
 
-      // Formato consecutivo irrepetible: CJ-[Día][Mes]-[Hora][Segundos]-[Año]
       const dia = String(hoy.getDate()).padStart(2, '0');
       const mes = String(hoy.getMonth() + 1).padStart(2, '0');
       const hora = String(hoy.getHours()).padStart(2, '0');
@@ -357,17 +348,14 @@
       
       const consecutivo = `CJ-${dia}${mes}-${hora}${seg}-${anio}`;
 
-      // Rellenar el comprobante de captura
       document.getElementById('resConsecutivo').textContent = consecutivo;
       document.getElementById('resNombreRef').textContent = n2;
       document.getElementById('resNombreReferidor').textContent = n1;
       document.getElementById('resProducto').textContent = prod;
       document.getElementById('resFechaLimite').textContent = fechaTexto;
 
-      // Guardar datos temporales para armar WhatsApp
       datosEnvio = { consecutivo, n1, med, datoPago, n2, tel, prod, fechaTexto };
 
-      // Efecto confeti de registro visible por encima del modal
       confetti({
         particleCount: 90,
         spread: 70,
@@ -376,12 +364,10 @@
         zIndex: 99999
       });
 
-      // Mostrar comprobante en pantalla
       document.getElementById('modalExito').classList.remove('hidden');
     }
 
     function enviarMensajeWhatsAppFinal() {
-      // Número comercial de Confort Jireh
       const numMama = "573113669723"; 
 
       const msg = `⭐ *CONFORT JIREH | PASE DE REFERIDO (${datosEnvio.consecutivo})*\n\n` +
